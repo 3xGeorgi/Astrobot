@@ -22,7 +22,7 @@ def get_webex_token():
         token = input("Enter your Webex Access Token: ")
         return f"Bearer {token}"
     else:
-        return "Bearer YOUR_WEBEX_TOKEN"
+        return "Bearer NzdmM2RhZGUtZmRiNS00NjU3LTk4ZmMtY2M4YjVlN2NlZDZhNzIzNDY5YTYtZjc0_PE93_c18e13ae-5575-4bc0-ae01-e48905f14f17"
 
 def get_api_key(prompt, hardcoded_key):
   #complete the function to get the API key from user input or use a hardcoded key
