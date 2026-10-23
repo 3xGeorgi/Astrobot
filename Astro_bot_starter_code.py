@@ -30,21 +30,19 @@ def get_api_key(prompt, hardcoded_key):
 # =========================
 # WEBEX FUNCTIONS
 # =========================
-def get_rooms(token):
+ def get_rooms(token):
     url = "https://webexapis.com/v1/rooms"
     headers = {"Authorization": token}
     response = requests.get(url, headers=headers)
-
+    
     if response.status_code != 200:
         print("Error fetching rooms:", response.status_code)
         return []
-
+    
     return response.json().get("items", [])
-
-
 def print_rooms(rooms):
-    for room in rooms:
-        print(#complete the print statement to display the room title and id)
+    for rooms in rooms:
+        print("error getting api key")
 
 
 def select_room(rooms):
