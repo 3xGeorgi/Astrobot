@@ -8,10 +8,10 @@
 # REQUIRED LIBRARIES
 # =========================
 
-import #complete the import statement to include the requests library
-import #complete the import statement to include the json library
-import #complete the import statement to include the time library
-from #complete the import statement to include the datetime library
+import requests
+import json
+import time
+from datetime 
 
 # =========================
 # CONFIGURATION FUNCTIONS
@@ -20,7 +20,7 @@ def get_webex_token():
     choice = input("Use hard-coded Webex token? (y/n): ").lower()
     if choice == "n":
         token = input("Enter your Webex Access Token: ")
-        return f"Bearer {MDllZTJmZjQtNDk1YS00ZGE2LWJiODItNGRjOWE2ZDg4YWY1ZTY0YjJlNTItMjNi_PE93_c18e13ae-5575-4bc0-ae01-e48905f14f17}"
+        return f"Bearer {token}"
     else:
         return "Bearer MWJjMWJlMGUtMDFhMy00MjA3LWIyZTktNGQyZGJjYTM2ODIxMzY4MTMxMWYtOGE1_PE93_c18e13ae-5575-4bc0-ae01-e48905f14f17"
 
