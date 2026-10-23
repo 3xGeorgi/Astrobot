@@ -63,17 +63,16 @@ def select_room(rooms):
 
 
 def get_latest_message(token, room_id):
-    url = #complete the URL to fetch messages from Webex API
-    params = {"roomId":#complete, "max": #complete}
-    headers = #complete the headers dictionary to include the Authorization header with the token
+    url = "https://webexapis.com/v1/messages"
+    params = {"roomId": room_id, "max": 1}
+    headers = {"Authorization": token}
 
-    response = requests.#complete(#complete, headers=headers, params=params)
+    response = requests.get(url, headers=headers, params=params)
 
     if response.status_code != 200:
         return None, None
 
     data = response.json().get("items", [])
-
     if not data:
         return None, None
 
@@ -82,13 +81,13 @@ def get_latest_message(token, room_id):
 
 
 def send_message(token, room_id, message):
-    url = #complete the URL to send messages to Webex API
-    headers = #complete the headers dictionary to include the Authorization header with the token and Content-Type as application/json
+    url = "https://webexapis.com/v1/messages"
+    headers = {"Authorization": token, "Content-Type": "application/json"}
     data = {
         "roomId": room_id,
         "text": message
     }
-    requests.#complete(url, headers=headers, data=json.dumps(data))
+    requests.post(url, headers=headers, data=json.dumps(data))
 
 # =========================
 # WEATHER FUNCTIONS
