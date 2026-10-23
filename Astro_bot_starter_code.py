@@ -20,7 +20,7 @@ def get_webex_token():
     choice = input("Use hard-coded Webex token? (y/n): ").lower()
     if choice == "n":
         token = input("Enter your Webex Access Token: ")
-        return f"Bearer {token}"
+        return f"Bearer {MDllZTJmZjQtNDk1YS00ZGE2LWJiODItNGRjOWE2ZDg4YWY1ZTY0YjJlNTItMjNi_PE93_c18e13ae-5575-4bc0-ae01-e48905f14f17}"
     else:
         return "Bearer NzdmM2RhZGUtZmRiNS00NjU3LTk4ZmMtY2M4YjVlN2NlZDZhNzIzNDY5YTYtZjc0_PE93_c18e13ae-5575-4bc0-ae01-e48905f14f17"
 
