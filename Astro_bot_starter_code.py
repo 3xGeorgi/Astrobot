@@ -25,21 +25,28 @@ def get_webex_token():
         return "Bearer MWJjMWJlMGUtMDFhMy00MjA3LWIyZTktNGQyZGJjYTM2ODIxMzY4MTMxMWYtOGE1_PE93_c18e13ae-5575-4bc0-ae01-e48905f14f17"
 
 def get_api_key(prompt, hardcoded_key):
+    choice = input(f"Use hard-coded {prompt}? (y/n): ").lower()
+    if choice == "n":
+        return input(f"Enter your {prompt}: ")
+    else:
+        return hardcoded_key
+
   #complete the function to get the API key from user input or use a hardcoded key
 
 # =========================
 # WEBEX FUNCTIONS
 # =========================
- def get_rooms(token):
+
+def get_rooms(token):
+
     url = "https://webexapis.com/v1/rooms"
     headers = {"Authorization": token}
     response = requests.get(url, headers=headers)
-    
     if response.status_code != 200:
         print("Error fetching rooms:", response.status_code)
         return []
-    
     return response.json().get("items", [])
+
 def print_rooms(rooms):
     for rooms in rooms:
         print("error getting api key")
@@ -166,7 +173,7 @@ def main():
     token = get_webex_token()
 
     weather_key = get_api_key(
-        "Weather API key",
+        "50922935a8514f2227993bbd1bb6e3f6",
         "YOUR_OPENWEATHER_API_KEY"
     )
 
