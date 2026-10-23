@@ -49,17 +49,17 @@ def get_rooms(token):
 
 def print_rooms(rooms):
     for rooms in rooms:
-        print("error getting api key")
+        print("Available Room: ", rooms["title"])
 
 
 def select_room(rooms):
     while True:
-        name = input(#complete the input prompt to ask the user for the room name)
+        name = input("Enter the name of the room you want to select: ")
         for room in rooms:
             if name.lower() in room["title"].lower():
-                print(#complete the print statement to confirm the selected room)
+                print(f"Selected Room: {room['title']}")
                 return room["id"]
-        print(#complete the print statement to indicate that the room was not found)
+        print("Room not found. Please try again.")
 
 
 def get_latest_message(token, room_id):
