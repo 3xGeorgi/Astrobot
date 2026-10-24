@@ -89,6 +89,26 @@ def send_message(token, room_id, message):
     }
     requests.post(url, headers=headers, data=json.dumps(data))
 
+def send_nasa_image(token, room_id, message, image_url):
+    url = "https://webexapis.com/v1/messages"
+
+    headers = {
+        "Authorization": token,
+        "Content-Type": "application/json"
+    }
+
+    data = {
+        "roomId": room_id,
+        "text": message,
+        "files": [image_url]
+    }
+
+    response = requests.post(url, headers=headers, json=data)
+
+    if response.status_code not in (200, 201):
+        print("NASA image error:", response.status_code, response.text)
+
+
 # =========================
 # WEATHER FUNCTIONS
 # =========================
@@ -147,9 +167,12 @@ def get_nasa_picture(api_key):
     if response.status_code != 200:
         return "Couldn't retrieve picture"
 
-   
-
     data = response.json()
+    if isinstance(data, list):
+        if not data:
+            return "NASA returned no pictures today."
+    data = data[0]
+    
     title = data.get("title", "NASA Astronomy Picture of the Day")
     date = data.get("date", "Date unavailable")
     explanation = data.get("explanation", "No explanation available.")
