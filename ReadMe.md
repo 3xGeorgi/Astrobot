@@ -177,9 +177,9 @@ Provide a short example based on your implementation
 
 | Component   | Description and Example (Relate to your Bot) |
 |------------|----------------------------------|
-| **Model**  |  | Handles data retrieval and processes. get_city_coordinates is an example
-| **View**   |  | Displays data to the user in readable format. send_message is an example
-| **Controller** |  | If and Elif loop, makes sure that the user doesnt input invalid commands
+| **Model**  | Handles data retrieval and processes. get_city_coordinates is an example | 
+| **View**   | Displays data to the user in readable format. send_message is an example | 
+| **Controller** | If and Elif loop, makes sure that the user doesnt input invalid commands | 
 
 ---
 
