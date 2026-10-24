@@ -132,6 +132,12 @@ def get_weather(city, api_key):
         f"Wind Speed: {weather['wind']['speed']} m/s"
     )
 
+
+# Nasa function 
+
+
+
+
 # =========================
 # ISS FUNCTIONS
 # =========================
@@ -227,7 +233,7 @@ def main():
                 send_message(
                     token,
                     room_id,
-                    "/weather <city>\n/iss\n/help\n/quit"
+                    "/weather <city>\n/iss\n/help\n/quit\n/nasa"
                 )
 
             elif message_text.lower() == "/iss":
