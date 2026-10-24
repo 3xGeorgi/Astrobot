@@ -159,35 +159,28 @@ def get_nasa_picture(api_key):
     url = "https://science.nasa.gov/wp-json/wp/v2/apod-basic"
 
     params = {"api_key": api_key}
+
     try:
         response = requests.get(url, params=params, timeout=15)
-    except requests.RequestException:
-        return "Couldn't retrieve picture"
+        response.raise_for_status()
+        data = response.json()
+    except (requests.RequestException, ValueError):
+        return None
 
-    if response.status_code != 200:
-        return "Couldn't retrieve picture"
-
-    data = response.json()
+    # Handle a list response
     if isinstance(data, list):
         if not data:
-            return "NASA returned no pictures today."
-    data = data[0]
-    
-    title = data.get("title", "NASA Astronomy Picture of the Day")
-    date = data.get("date", "Date unavailable")
-    explanation = data.get("explanation", "No explanation available.")
-    media_type = data.get("media_type", "image")
-    image_url = data.get("hdurl") or data.get("url")
-    page_url = data.get("permalink") or data.get("url", "")
+            return None
+        data = data[0]
 
-    result = f"{title} ({date})\n{explanation}"
-    if media_type != "image":
-        result += f"\nMedia type: {media_type}"
-    if image_url:
-        result += f"\nPicture: {image_url}"
-    if page_url and page_url != image_url:
-        result += f"\nMore information: {page_url}"
-    return result
+    if not isinstance(data, dict):
+        return None
+
+    # Return only one image URL
+    if data.get("media_type", "image") != "image":
+        return None
+
+    return data.get("hdurl") or data.get("url")
 
 
 # =========================
@@ -292,10 +285,16 @@ def main():
                 send_message(token, room_id, get_iss_location(weather_key))
 
             elif message_text.lower() == "/nasa":
-                send_message(token, room_id, get_nasa_picture(nasa_key))
+                image_url = get_nasa_picture(nasa_key)
+
+                if image_url:
+                    send_nasa_image(token, room_id, "", image_url)
+                else:
+                    print("Couldn't retrieve NASA picture.")
+
 
             elif message_text.lower() == "/quit":
-                send_message(token, room_id, "AstroBot shutting down." )
+                send_message(token, room_id, "AstroBot shutting down.")
                 break
 
             elif message_text.lower().startswith("/weather"):
