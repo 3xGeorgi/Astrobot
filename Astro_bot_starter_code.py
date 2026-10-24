@@ -22,7 +22,7 @@ def get_webex_token():
         token = input("Enter your Webex Access Token: ")
         return f"Bearer {token}"
     else:
-        return "Bearer MGVkZDhiM2UtNjY1Ny00NGQzLTljMTYtNmIyZjRiNTUzOGVmOTcyZGUxOWEtYjEy_PE93_c18e13ae-5575-4bc0-ae01-e48905f14f17"
+        return "emptied to avoid sharing"
 
 def get_api_key(prompt, hardcoded_key):
     choice = input(f"Use hard-coded {prompt}? (y/n): ").lower()
@@ -240,11 +240,11 @@ def main():
 
     weather_key = get_api_key(
         "openweather API key",
-        "50922935a8514f2227993bbd1bb6e3f6"
+        "emptied to avoid sharing"
     )
     nasa_key = get_api_key(
         "nasa api key",
-        "fzD9wTTKTFLfTHDDfjdgqHNWTbwCC9kQbcFzr7pk"
+        "emptied to avoid sharing"
     )
 
     rooms = get_rooms(token)
