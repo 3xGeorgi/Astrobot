@@ -199,7 +199,7 @@ def main():
 
     print_rooms(rooms)
     room_id = select_room(rooms)
-    send_message(token, room_id, "Hello, nerds, Astrobot here!.")
+    send_message(token, room_id, "Hello, Astrobot here, use /help to see available commands.")
 
     last_message_id, _ = get_latest_message(token, room_id)
 
