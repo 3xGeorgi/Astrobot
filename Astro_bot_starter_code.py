@@ -190,6 +190,10 @@ def main():
         "openweather API key",
         "50922935a8514f2227993bbd1bb6e3f6"
     )
+    nasa_key = get_api_key(
+        "nasa api key",
+        "fzD9wTTKTFLfTHDDfjdgqHNWTbwCC9kQbcFzr7pk"
+    )
 
     rooms = get_rooms(token)
 
