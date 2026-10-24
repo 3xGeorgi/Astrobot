@@ -186,6 +186,16 @@ Provide a short example based on your implementation
 ### 📝 Reflection and Evaluation ( 8 marks )
 
 Reflect on your AstroBot (400 words):
+The bot is incredibly effective for what it is designed to do, the quick and intuitive responses that it gives are brilliant for exactly what the astronomy club intends to use the bot for. The webex messaging with the bot makes it simple to easily pick out information that is specifically needed at the moment.
+
+I believe the best design choice was using pythons built-in libraries which make handling certain values like timestamps and dates very easy to implement and make readily visible. For example using datetime to convert timestamps from Openweather, allowing for a quick and readable stamp in order to see the entire profile of the weather of the place that the user has input is certainly a great feature that fits the specifications of the people who requested the bot.
+
+Security was a big concern for me, that is why there are check lines to ensure that the API keys are actively protected and to make sure the bot is not simply repeating commands. However security is reliant on the access tokens being kept private and confidential, that is something that is dependant on the astrology team itself.
+
+The biggest challenge that i managed to come across while making the bot was the implementation of NASA's photo of the day in a satisfying and easily readable way, i had to troubleshoot the api response using Postman in order to make sure that the authentication key itself wasn't broken. I believe that further testing with postman will resolve the rest of my issues with API's in the future.
+
+
+Overall Astrobot allowed me to tinker with the software and learn a lot more about API-s and designing bots, specifically it taught me about using aditional apps to ensure that everything works such as postman. 
 
 - How effective is your bot in meeting the Astronomy Club’s needs?  
 - What design decisions worked well?  
@@ -200,6 +210,7 @@ Reflect on your AstroBot (400 words):
 
 - Use official documentation for accuracy (e.g. developer.webex.com, locationiq.com or Mapbox, open-notify.org or other ISS API).
 - Be prepared to explain your findings to your instructor or demo how you retrieved them using tools like Postman, Curl, or Python scripts.
+
 
 ---
 
