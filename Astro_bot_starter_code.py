@@ -211,8 +211,11 @@ def main():
             last_message_id = message_id
 
             print(f"Received message: {message_text}")
-
             if not message_text or message_text.startswith("Could not receive message"):
+                continue
+            if message_text.strip() == "Unknown command. Use /help":
+                continue
+            if not message_text.startswith("/"):
                 continue
 
             if message_text.lower() == "/help":
