@@ -147,25 +147,7 @@ def get_nasa_picture(api_key):
     if response.status_code != 200:
         return "Couldn't retrieve picture"
 
-    data = response.json()
-
-    title = data.get("title", "NASA Astronomy Picture of the Day")
-    date = data.get("date", "Date unavailable")
-    explanation = data.get("explanation", "No explanation available.")
-    media_type = data.get("media_type", "image")
-    image_url = data.get("hdurl") or data.get("url")
-    page_url = data.get("permalink") or data.get("url", "")
-
-    # Limit the explanation to keep the Webex message manageable
-    if len(explanation) > 700:
-        explanation = explanation[:700].rstrip() + "..."
-
-    if media_type == "video":
-        media_text = f"Video: {page_url}" if page_url else "Video available"
-    else:
-        media_text = f"Image: {image_url}" if image_url else "Image unavailable"
-
-    source_line = f"More info: {page_url}" if page_url else "More info: unavailable"
+   
 
     return (
         f"NASA Astronomy Picture of the Day\n"
@@ -175,6 +157,7 @@ def get_nasa_picture(api_key):
         f"{source_line}\n"
         f"Description: {explanation}"
     )
+
 
 
 # =========================
