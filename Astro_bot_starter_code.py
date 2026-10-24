@@ -149,15 +149,22 @@ def get_nasa_picture(api_key):
 
    
 
-    return (
-        f"NASA Astronomy Picture of the Day\n"
-        f"Title: {title}\n"
-        f"Date: {date}\n"
-        f"{media_text}\n"
-        f"{source_line}\n"
-        f"Description: {explanation}"
-    )
+    data = response.json()
+    title = data.get("title", "NASA Astronomy Picture of the Day")
+    date = data.get("date", "Date unavailable")
+    explanation = data.get("explanation", "No explanation available.")
+    media_type = data.get("media_type", "image")
+    image_url = data.get("hdurl") or data.get("url")
+    page_url = data.get("permalink") or data.get("url", "")
 
+    result = f"{title} ({date})\n{explanation}"
+    if media_type != "image":
+        result += f"\nMedia type: {media_type}"
+    if image_url:
+        result += f"\nPicture: {image_url}"
+    if page_url and page_url != image_url:
+        result += f"\nMore information: {page_url}"
+    return result
 
 
 # =========================
