@@ -135,9 +135,9 @@ In this section, evaluate how web technologies, architecture, and design pattern
 Explain how the client–server model applies to your AstroBot:
 
 - Identify the **client** 
-The python program
+/The python program
 - Identify the **server(s)** 
-the api's that astrobot is pulling from
+/the api's that astrobot is pulling from
 - Describe how data flows between:
   - User, AstroBot and APIs
 
