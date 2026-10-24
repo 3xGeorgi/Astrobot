@@ -149,8 +149,9 @@ def get_weather(city, api_key):
         f"Temperature: {weather['main']['temp']}°C\n"
         f"Description: {weather['weather'][0]['description']}\n"
         f"Humidity: {weather['main']['humidity']}%\n"
+        f"Time: {datetime.fromtimestamp(weather['dt']).strftime('%d-%m-%Y %H:%M:%S')}\n"
         f"Wind Speed: {weather['wind']['speed']} m/s"
-    )
+        )
 
 
 # Nasa function 

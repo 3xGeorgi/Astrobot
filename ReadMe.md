@@ -56,7 +56,7 @@ Place: Over Ocean / No Nearby City
         "appid": api_key
     }_` |
 | Authentication method | `__Api authentication key____` |
-| Required query parameters | `_______________________________` |
+| Required query parameters | `___q appid limit lon lat____________` |
 | Sample request with latitude/longitude | `_______________________________` |
 | Sample JSON response (formatted example) |  
 ```
@@ -75,12 +75,16 @@ messaging
 
 | Criteria | Details |
 |---------|---------|
-| API Provider (Choose one) | **OpenWeather, OpenWeatherMap (or other – provide details)** |
-| API Base URL | `_______________________________` |
-| Endpoint for current weather | `_______________________________` |
-| Authentication method | `_______________________________` |
-| Required query parameters | `_______________________________` |
-| Sample JSON response (formatted example) |  
+| API Provider (Choose one) | **OpenWeather** |
+| API Base URL | `____https://api.openweathermap.org/geo/1.0/direct_____` |
+| Endpoint for current weather | `___weather tag in webex messaging____________` |
+| Authentication method | `______api auth keu______________` |
+| Required query parameters | `_______lon lat______________` |
+| Sample JSON response (formatted example) |   f"City: {weather['name']}, Country: {weather['sys']['country']}\n"
+        f"Temperature: {weather['main']['temp']}°C\n"
+        f"Description: {weather['weather'][0]['description']}\n"
+        f"Humidity: {weather['main']['humidity']}%\n"
+        f"Wind Speed: {weather['wind']['speed']} m/s"
 ```
 
 ```
@@ -92,13 +96,14 @@ messaging
 
 | Criteria | Details |
 |---------|---------|
-| Library used | `_______________________________` |
-| Function used to convert epoch | `_______________________________` |
+| Library used | `____datetime_____` |
+| Function used to convert epoch | `___{datetime.fromtimestamp(weather['dt']).strftime('%d-%m-%Y %H:%M:%S')}\n_____` |
 | Sample code to convert timestamp |  
 ```  
 ```
 |
-| Output (human-readable time) | `_______________________________` |
+| Output (human-readable time) | `_
+Time: 24-10-2026 08:34:52___` |
 
 ---
 
@@ -106,11 +111,11 @@ messaging
 
 | Criteria | Details |
 |---------|---------|
-| API Provider | '_________' |
-| API Base URL | `_______________________________` |
-| Endpoint | `_______________________________` |
-| Authentication method | `_______________________________` |
-| Required query parameters | `_______________________________` |
+| API Provider | '_Nasa_' |
+| API Base URL | `_https://science.nasa.gov__` |
+| Endpoint | `___wp-json/wp/v2/apod-basic______` |
+| Authentication method | `____Api key______` |
+| Required query parameters | `_____hdurl_________` |
 | Sample JSON response (formatted example) |  
 ```
 
