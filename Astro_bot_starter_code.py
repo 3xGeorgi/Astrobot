@@ -22,7 +22,7 @@ def get_webex_token():
         token = input("Enter your Webex Access Token: ")
         return f"Bearer {token}"
     else:
-        return "Bearer MWJjMWJlMGUtMDFhMy00MjA3LWIyZTktNGQyZGJjYTM2ODIxMzY4MTMxMWYtOGE1_PE93_c18e13ae-5575-4bc0-ae01-e48905f14f17"
+        return "Bearer MDllZTJmZjQtNDk1YS00ZGE2LWJiODItNGRjOWE2ZDg4YWY1ZTY0YjJlNTItMjNi_PE93_c18e13ae-5575-4bc0-ae01-e48905f14f17"
 
 def get_api_key(prompt, hardcoded_key):
     choice = input(f"Use hard-coded {prompt}? (y/n): ").lower()
