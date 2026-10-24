@@ -176,7 +176,7 @@ def get_nasa_picture(api_key):
     if not isinstance(data, dict):
         return None
 
-    # Return only one image URL
+    # Returns image 
     if data.get("media_type", "image") != "image":
         return None
 

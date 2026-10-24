@@ -25,11 +25,14 @@ This investigation sheet helps you gather key technical information from the thr
 
 | Criteria | Details |
 |---------|---------|
-| API Base URL | `_______________________________` |
-| Endpoint for current ISS location | `_______________________________` |
+| API Base URL | `"http://api.open-notify.org"` |
+| Endpoint for current ISS location | `/iss-now.json` |
 | Sample response format (example JSON) |  
 ```
-
+Current ISS Location:
+Latitude: 13.9435
+Longitude: -104.8952
+Place: Over Ocean / No Nearby City
 ```
 |
 
@@ -40,11 +43,20 @@ This investigation sheet helps you gather key technical information from the thr
 | Criteria | Details |
 |---------|---------|
 | Provider used (Choose one) | **LocationIQ / Mapbox/ OpenWeatherMap other -provide detail** |
-| API Base URL | `_______________________________` |
-| Endpoint for geocoding | `_______________________________` |
-| Endpoint for reverse geocoding | `_______________________________` |
-| Authentication method | `_______________________________` |
-| Required query parameters | `_______________________________` |
+| API Base URL | `http://api.openweathermap.org/geo/1.0/direct` |
+| Endpoint for geocoding | `f"City: {weather['name']}, Country: {weather['sys']['country']}\n"
+        f"Temperature: {weather['main']['temp']}°C\n"
+        f"Description: {weather['weather'][0]['description']}\n"
+        f"Humidity: {weather['main']['humidity']}%\n"
+        f"Wind Speed: {weather['wind']['speed']} m/s"` |
+| Endpoint for reverse geocoding | `_params = {
+        "lat": location["lat"],
+        "lon": location["lon"],
+        "units": "metric",
+        "appid": api_key
+    }_` |
+| Authentication method | `__Api authentication key____` |
+| Required query parameters | `q, limit, appid, lat, lon, units` |
 | Sample request with latitude/longitude | `_______________________________` |
 | Sample JSON response (formatted example) |  
 ```
