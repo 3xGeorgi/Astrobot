@@ -137,9 +137,10 @@ Explain how the client–server model applies to your AstroBot:
 - Identify the **client** 
 /The python program
 - Identify the **server(s)** 
-/the api's that astrobot is pulling from
+/the api's that astrobot is pulling from, for example the openweather api
 - Describe how data flows between:
   - User, AstroBot and APIs
+1 user enters a command 2. program goes over what the user sent 3 bot thinks for a 5 seconds 4 the bot asks the api it was asked to request from 5 the user is able to see what the bot pulled in the webex app
 
 Include a **simple block diagram** to illustrate this interaction.
 
