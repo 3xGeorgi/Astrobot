@@ -134,6 +134,28 @@ def get_weather(city, api_key):
 
 
 # Nasa function 
+def get_nasa_picture(api_key):
+    url = "https://science.nasa.gov/wp-json/wp/v2/apod-basic"
+
+    params = {"api_key": api_key}
+    try:
+         response = requests.get(url, params=params, timeout=15)
+
+        if response.status_code != 200:
+            return "Sorry, I couldn't retrieve NASA's picture of the day."
+
+        data = response.json()
+
+        title = data.get("title", "NASA Astronomy Picture of the Day")
+        date = data.get("date", "Date unavailable")
+        explanation = data.get("explanation", "No explanation available.")
+        media_type = data.get("media_type", "image")
+        image_url = data.get("hdurl")
+        page_url = data.get("permalink") or data.get("url", "")
+
+        # Limit the explanation to keep the Webex message manageable
+        if len(explanation) > 700:
+            explanation = explanation[:700] + "..."
 
 
 
