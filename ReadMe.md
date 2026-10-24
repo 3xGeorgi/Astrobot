@@ -55,10 +55,16 @@ Place: Over Ocean / No Nearby City
         "units": "metric",
         "appid": api_key
     }_` |
-| Authentication method | `__Api authentication key____` |
-| Required query parameters | `q, limit, appid, lat, lon, units` |
+|
+ Authentication method | `__Api authentication key____` |
+| 
+Required query parameters | `q, limit, appid, lat, lon, units` |
 | Sample request with latitude/longitude | `_______________________________` |
-| Sample JSON response (formatted example) |  
+| Sample JSON response (formatted example) |  City: Mogadishu, Country: SO
+Temperature: 29.92°C
+Description: broken clouds
+Humidity: 70%
+Wind Speed: 3.6 m/s
 ```
 
 ```
