@@ -118,7 +118,7 @@ Time: 24-10-2026 08:34:52___` |
 | Required query parameters | `_____hdurl_________` |
 | Sample JSON response (formatted example) |  
 ```
-
+<strong>Explanation:</strong> <a href="https://blogs.esa.int/rosetta/2014/10/14/mission-selfie-from-16-km/">This Rosetta spacecraft selfie</a> was snapped on October 7th, 2014. At the time the <a href="https://rosetta.esa.int/">comet-chasing spacecraft</a> was about 472 million kilometers from planet Earth, but only 16 kilometers from the surface of <a href="https://science.nasa.gov/image-article/apod-2021-november-13-rosettas-comet-in-gemini/">comet 67P/Churyumov-Gerasimenko</a>. Looming beyond the spacecraft near the top of the frame, dust and gas stream away from the comet's curious <a href="https://science.nasa.gov/image-article/apod-2014-august-7-rosettas-rendezvous/">double-lobed nucle...
 ```
 |
 
@@ -128,14 +128,16 @@ Time: 24-10-2026 08:34:52___` |
 
 In this section, evaluate how web technologies, architecture, and design patterns have been applied in your **AstroBot**. Your responses must relate directly to your implementation and include reflection on your design decisions.
 
----
+--- 
 
 ###  Web Architecture – Client–Server Model (3 marks)
 
 Explain how the client–server model applies to your AstroBot:
 
 - Identify the **client** 
+The python program
 - Identify the **server(s)** 
+the api's that astrobot is pulling from
 - Describe how data flows between:
   - User, AstroBot and APIs
 
