@@ -134,30 +134,47 @@ def get_weather(city, api_key):
 
 
 # Nasa function 
+
 def get_nasa_picture(api_key):
     url = "https://science.nasa.gov/wp-json/wp/v2/apod-basic"
 
     params = {"api_key": api_key}
     try:
-         response = requests.get(url, params=params, timeout=15)
+        response = requests.get(url, params=params, timeout=15)
+    except requests.RequestException:
+        return "Couldn't retrieve picture"
 
-        if response.status_code != 200:
-            return "Sorry, I couldn't retrieve NASA's picture of the day."
+    if response.status_code != 200:
+        return "Couldn't retrieve picture"
 
-        data = response.json()
+    data = response.json()
 
-        title = data.get("title", "NASA Astronomy Picture of the Day")
-        date = data.get("date", "Date unavailable")
-        explanation = data.get("explanation", "No explanation available.")
-        media_type = data.get("media_type", "image")
-        image_url = data.get("hdurl")
-        page_url = data.get("permalink") or data.get("url", "")
+    title = data.get("title", "NASA Astronomy Picture of the Day")
+    date = data.get("date", "Date unavailable")
+    explanation = data.get("explanation", "No explanation available.")
+    media_type = data.get("media_type", "image")
+    image_url = data.get("hdurl") or data.get("url")
+    page_url = data.get("permalink") or data.get("url", "")
 
-        # Limit the explanation to keep the Webex message manageable
-        if len(explanation) > 700:
-            explanation = explanation[:700] + "..."
+    # Limit the explanation to keep the Webex message manageable
+    if len(explanation) > 700:
+        explanation = explanation[:700].rstrip() + "..."
 
+    if media_type == "video":
+        media_text = f"Video: {page_url}" if page_url else "Video available"
+    else:
+        media_text = f"Image: {image_url}" if image_url else "Image unavailable"
 
+    source_line = f"More info: {page_url}" if page_url else "More info: unavailable"
+
+    return (
+        f"NASA Astronomy Picture of the Day\n"
+        f"Title: {title}\n"
+        f"Date: {date}\n"
+        f"{media_text}\n"
+        f"{source_line}\n"
+        f"Description: {explanation}"
+    )
 
 
 # =========================
@@ -255,14 +272,17 @@ def main():
                 send_message(
                     token,
                     room_id,
-                    "/weather <city>\n/iss\n/help\n/quit\n/nasa"
+                    "/weather <city>\n/iss\n/nasa\n/help\n/quit"
                 )
 
             elif message_text.lower() == "/iss":
                 send_message(token, room_id, get_iss_location(weather_key))
 
+            elif message_text.lower() == "/nasa":
+                send_message(token, room_id, get_nasa_picture(nasa_key))
+
             elif message_text.lower() == "/quit":
-                send_message(token, room_id, "AstroBot shutting down.")
+                send_message(token, room_id, "AstroBot shutting down." )
                 break
 
             elif message_text.lower().startswith("/weather"):
@@ -282,4 +302,4 @@ def main():
 
 
 if __name__ == '__main__':
-    main()
+    main() 
