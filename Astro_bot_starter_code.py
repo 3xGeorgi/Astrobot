@@ -242,7 +242,7 @@ def main():
             else:
                 send_message(token, room_id, "Unknown command. Use /help")
 
-        time.sleep(50)
+        time.sleep(5)
 
 
 if __name__ == '__main__':
