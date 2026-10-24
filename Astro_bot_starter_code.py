@@ -206,8 +206,8 @@ def main():
     token = get_webex_token()
 
     weather_key = get_api_key(
-        "50922935a8514f2227993bbd1bb6e3f6",
-        "YOUR_OPENWEATHER_API_KEY"
+        "openweather API key",
+        "50922935a8514f2227993bbd1bb6e3f6"
     )
 
     rooms = get_rooms(token)
