@@ -179,25 +179,6 @@ def get_iss_location(api_key):
         f"Place: {place}"
     )
 
-    data = response.json()
-
-    lat = data[ "iss_position"]["latitude"]
-    lon = data[ "iss_position"]["longitude"]
-
-    location = reverse_geocode(lat, lon, api_key)
-
-    place = "Over Ocean / No Nearby City"
-
-    if location:
-        place = location["name"]
-
-    return (
-        f"Current ISS Location:\n"
-        f"Latitude: {lat}\n"
-        f"Longitude: {lon}\n"
-        f"Place: {place}"
-    )
-
 # =========================
 # MAIN BOT LOGIC
 # =========================
@@ -231,7 +212,7 @@ def main():
 
             print(f"Received message: {message_text}")
 
-            if not message_text.startswith("Could not receive message"):
+            if not message_text or message_text.startswith("Could not receive message"):
                 continue
 
             if message_text.lower() == "/help":
@@ -240,6 +221,13 @@ def main():
                     room_id,
                     "/weather <city>\n/iss\n/help\n/quit"
                 )
+
+            elif message_text.lower() == "/iss":
+                send_message(token, room_id, get_iss_location(weather_key))
+
+            elif message_text.lower() == "/quit":
+                send_message(token, room_id, "AstroBot shutting down.")
+                break
 
             elif message_text.lower().startswith("/weather"):
 
@@ -251,17 +239,10 @@ def main():
                     city = parts[1]
                     send_message(token, room_id, get_weather(city, weather_key))
 
-            elif message_text.lower() == "#complete":
-                send_message(token, room_id, get_iss_location(weather_key))
-
-            elif message_text.lower() == "#complete":
-                send_message(token, room_id, "AstroBot shutting down.")
-                break
-
             else:
                 send_message(token, room_id, "Unknown command. Use /help")
 
-        time.sleep(5)
+        time.sleep(50)
 
 
 if __name__ == '__main__':
