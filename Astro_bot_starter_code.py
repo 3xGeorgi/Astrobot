@@ -93,9 +93,9 @@ def send_message(token, room_id, message):
 # WEATHER FUNCTIONS
 # =========================
 def get_city_coordinates(city, api_key):
-    url = #complete the URL to fetch city coordinates from OpenWeatherMap API
-    params = #complete the params dictionary to include the city name, limit, and the API key
-    response = requests.#complete(url, params=params)
+    url = "http://api.openweathermap.org/geo/1.0/direct"
+    params = {"q": city, "limit": 1, "appid": api_key}
+    response = requests.get(url, params=params)
 
     if response.status_code != 200:
         return None
@@ -108,30 +108,42 @@ def get_weather(city, api_key):
     location = get_city_coordinates(city, api_key)
 
     if not location:
-        return #complete the return statement to indicate that the city was not found
+        return f"Could not find coordinates for city: {city}"
 
-    url = #complete the URL to fetch weather data from OpenWeatherMap API
-    params = #complete the params dictionary to include the latitude, longitude, units as metric, and the API key
+    url = "http://api.openweathermap.org/data/2.5/weather"
+    params = {
+        "lat": location["lat"],
+        "lon": location["lon"],
+        "units": "metric",
+        "appid": api_key
+    }
 
-    response = requests.#complete(url, params=params)
+    response = requests.get(url, params=params)
 
     if response.status_code != 200:
-        return #complete the return statement to indicate that the wheather weather data retrieved or not
-
+        return "Sorry, I could not retrieve the weather data."
     weather = response.json()
 
     return (
-        #complete the return statement to format and return the weather information such as including city name, country, temperature, weather description, humidity, and wind speed
+        f"City: {weather['name']}, Country: {weather['sys']['country']}\n"
+        f"Temperature: {weather['main']['temp']}°C\n"
+        f"Description: {weather['weather'][0]['description']}\n"
+        f"Humidity: {weather['main']['humidity']}%\n"
+        f"Wind Speed: {weather['wind']['speed']} m/s"
     )
 
 # =========================
 # ISS FUNCTIONS
 # =========================
 def reverse_geocode(lat, lon, api_key):
-    url = #complete the URL to fetch reverse geocoding data from OpenWeatherMap API
-    params = #complete the params dictionary to include the latitude, longitude, limit, and the API key
-
-    response = requests.#complete(url, params=params)
+    url = "http://api.openweathermap.org/geo/1.0/reverse"
+    params = {
+        "lat": lat,
+        "lon": lon,
+        "limit": 1,
+        "appid": api_key
+    }
+    response = requests.get(url, params=params)
 
     if response.status_code != 200:
         return None
@@ -141,27 +153,49 @@ def reverse_geocode(lat, lon, api_key):
 
 
 def get_iss_location(api_key):
-    url = #complete the URL to fetch ISS current location from the Open Notify API
+    url = "http://api.open-notify.org/iss-now.json"
 
-    response = requests.#complete(#complete)
+    response = requests.get(url)
 
     if response.status_code != 200:
-        return #complete the return statement to indicate whether ISS location retrieved or not
+        return "Iss location could not be retrieved."
 
     data = response.json()
 
-    lat = data[#complete][#complete]
-    lon = data[#complete][#complete]
+    lat = data["iss_position"]["latitude"]
+    lon = data["iss_position"]["longitude"]
 
     location = reverse_geocode(lat, lon, api_key)
 
     place = "Over Ocean / No Nearby City"
 
     if location:
-        place = #
+        place = location["name"]
 
     return (
-        #complete the return statement to format and return the ISS location information including latitude, longitude, and place name
+        f"Current ISS Location:\n"
+        f"Latitude: {lat}\n"
+        f"Longitude: {lon}\n"
+        f"Place: {place}"
+    )
+
+    data = response.json()
+
+    lat = data[ "iss_position"]["latitude"]
+    lon = data[ "iss_position"]["longitude"]
+
+    location = reverse_geocode(lat, lon, api_key)
+
+    place = "Over Ocean / No Nearby City"
+
+    if location:
+        place = location["name"]
+
+    return (
+        f"Current ISS Location:\n"
+        f"Latitude: {lat}\n"
+        f"Longitude: {lon}\n"
+        f"Place: {place}"
     )
 
 # =========================
