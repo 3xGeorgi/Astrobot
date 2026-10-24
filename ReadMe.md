@@ -148,6 +148,7 @@ Include a **simple block diagram** to illustrate this interaction.
 - Consider but not limiting to secure handling of API keys and tokens, API rate limiting, and Input validation (e.g., handling user commands safely), include examples from code where necessary to illustrate.
 
 ---
+Api keys are used in order to verify that the python program is legitimate and is not spam, rate limits are implemented for a simmilar reason to prevent the bot from disturbing the flow of information to the servers. Validation is implemented in user commands in order to preventusers from inputing the wrong things in the bot, as well as to prevent the bot from doing things its not designed to do.
 
 ###  RESTful API Usage in Your Application (3 marks )
 
@@ -159,10 +160,15 @@ Explain how REST APIs are used in your AstroBot:
 
 Note: Relate your explanation directly to your code for higher grade. 
 
+Astrobot uses rest apis in the form of requests in order to get information such as the longitude and latitude of the iss when it is called to do so.
+
+
+The program uses JSON files in order to transmit responses so that they are easily readable by the user
+
 #### Security Considerations: (2 marks)
 - Check response status codes, Handling invalid or unexpected API responses, Avoiding excessive API calls
 
----
+--- Astrobot checks links and returns error messages if the links are invalid, this is done so in the if response.status_code != 200: line in order to make sure that the response code is valid.
 
 ###  MVC Design Pattern in AstroBot (3 Marks)
 
@@ -171,9 +177,9 @@ Provide a short example based on your implementation
 
 | Component   | Description and Example (Relate to your Bot) |
 |------------|----------------------------------|
-| **Model**  |  |
-| **View**   |  |
-| **Controller** |  |
+| **Model**  |  | Handles data retrieval and processes. get_city_coordinates is an example
+| **View**   |  | Displays data to the user in readable format. send_message is an example
+| **Controller** |  | If and Elif loop, makes sure that the user doesnt input invalid commands
 
 ---
 
