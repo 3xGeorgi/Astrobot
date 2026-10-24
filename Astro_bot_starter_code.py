@@ -199,6 +199,7 @@ def main():
 
     print_rooms(rooms)
     room_id = select_room(rooms)
+    send_message(token, room_id, "Hello, nerds, Astrobot here!.")
 
     last_message_id, _ = get_latest_message(token, room_id)
 
