@@ -39,7 +39,7 @@ def get_api_key(prompt, hardcoded_key):
 
 def get_rooms(token):
 
-    url = "https://webexapis.com/v1/rooms"
+    url = "x"
     headers = {"Authorization": token}
     response = requests.get(url, headers=headers)
     if response.status_code != 200:
@@ -63,7 +63,7 @@ def select_room(rooms):
 
 
 def get_latest_message(token, room_id):
-    url = "https://webexapis.com/v1/messages"
+    url = ""
     params = {"roomId": room_id, "max": 1}
     headers = {"Authorization": token}
 
@@ -81,7 +81,7 @@ def get_latest_message(token, room_id):
 
 
 def send_message(token, room_id, message):
-    url = "https://webexapis.com/v1/messages"
+    url = "x"
     headers = {"Authorization": token, "Content-Type": "application/json"}
     data = {
         "roomId": room_id,
@@ -90,7 +90,7 @@ def send_message(token, room_id, message):
     requests.post(url, headers=headers, data=json.dumps(data))
 
 def send_nasa_image(token, room_id, message, image_url):
-    url = "https://webexapis.com/v1/messages"
+    url = "x"
 
     headers = {
         "Authorization": token,
@@ -157,7 +157,7 @@ def get_weather(city, api_key):
 # Nasa function 
 
 def get_nasa_picture(api_key):
-    url = "https://science.nasa.gov/wp-json/wp/v2/apod-basic"
+    url = "x"
 
     params = {"api_key": api_key}
 
